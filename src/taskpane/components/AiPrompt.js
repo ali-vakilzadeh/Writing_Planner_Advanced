@@ -1,5 +1,5 @@
 "use client"
-
+import * as React from "react"
 import { useState } from "react"
 import {
   Stack,
@@ -16,7 +16,7 @@ import {
   MessageBar,
   MessageBarType,
 } from "@fluentui/react"
-import { getApiKey } from "../utils/api-utils"
+import { getApiKey } from "../utils/api-utils.ts"
 
 // System prompt for generating a new plan
 const NEW_PLAN_SYSTEM_PROMPT = `

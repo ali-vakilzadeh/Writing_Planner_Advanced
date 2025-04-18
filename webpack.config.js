@@ -30,7 +30,7 @@ module.exports = async (env, options) => {
       clean: true,
     },
     resolve: {
-      extensions: [".js", ".jsx", ".html"],
+      extensions: [".js", ".jsx", ".html", ".ts", ".tsx"],
     },
     module: {
       rules: [
@@ -38,6 +38,16 @@ module.exports = async (env, options) => {
           test: /\.jsx?$/,
           use: {
             loader: "babel-loader",
+          },
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.tsx?$/,
+          use: {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+            },
           },
           exclude: /node_modules/,
         },
