@@ -1882,20 +1882,21 @@ export default function App(props) {
         <Stack>
           <Stack horizontal verticalAlign="center">
             <h1 style={titleStyles.root}>Writing Planner</h1>
-            <TooltipHost content="Help">
+            
+          </Stack>
+          <p style={subtitleStyles.root}>Plan your work and focus on your magic.</p>
+        </Stack>
+      </Stack>
+        <Stack horizontal tokens={{ childrenGap: 5 }}>
+        <TooltipHost content="Help">
               <IconButton
                 iconProps={{ iconName: "Help" }}
                 onClick={() => window.open("https://www.writepro.app/help/wpb", "_blank")}
-                styles={{ root: { height: 24, width: 24, marginLeft: 5 } }}
               />
             </TooltipHost>
             <TooltipHost content="About">
             <IconButton iconProps={{ iconName: "Info" }} onClick={() => setAboutOpen(true)} />
           </TooltipHost>
-          </Stack>
-          <p style={subtitleStyles.root}>Plan your work and focus on your magic.</p>
-        </Stack>
-        <Stack horizontal tokens={{ childrenGap: 5 }}>
           <TooltipHost content="Refresh Statistics">
             <IconButton iconProps={{ iconName: "Refresh" }} onClick={refreshStatistics} disabled={refreshing} />
           </TooltipHost>
@@ -1907,8 +1908,7 @@ export default function App(props) {
             <SettingsDialog isOpen={settingsDialogOpen} onDismiss={() => setSettingsDialogOpen(false)} />
           </TooltipHost>
         </Stack>
-      </Stack>
-
+      {/*TODO: add fields to change prompts*/}
       {/* Progress */}
       <Stack tokens={{ childrenGap: 10, padding: "10px 0" }}>
         <Stack horizontal horizontalAlign="space-between">
