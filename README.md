@@ -1,10 +1,10 @@
-# Writing Planner Basic - Word Add-in
+# Writing Planner Advanced - Word Add-in
 
-Welcome to the Writing Planner Basic! This Word Add-in helps you to structure, plan, and track your writing projects directly within Microsoft Word. Say goodbye to scattered notes and hello to organized, efficient writing!
+Welcome to the Writing Planner Advanced! This Word Add-in helps you to structure, plan, and track your writing projects directly within Microsoft Word. Say goodbye to scattered notes and hello to organized, efficient writing!
 
 ## Project Description
 
-Writing Planner Basic is a task pane add-in for Microsoft Word, built with React, Fluent UI, and Tailwind CSS. It provides a dedicated space to outline your document, manage the status of each section, add notes, and visualize your overall progress.
+Writing Planner Advanced is a task pane add-in for Microsoft Word, built with React, Fluent UI, and Tailwind CSS. It provides a dedicated space to outline your document, manage the status of each section, add notes, and visualize your overall progress.
 
 **Key Features:**
 
@@ -82,7 +82,7 @@ Let's get planning!
 
 **Opening the Add-in:**
 
-*   Once installed and sideloaded (using `pnpm start`), the "Writing Planner Basic" task pane should appear on the right side of your Word window.
+*   Once installed and sideloaded (using `pnpm start`), the "Writing Planner Advanced" task pane should appear on the right side of your Word window.
 *   If you close it, you can typically reopen it from the "Home" tab in the Word ribbon.
 
 **Using the Planner:**
@@ -118,4 +118,4 @@ Your plan is automatically saved within the document's properties whenever you m
 
 ---
 
-Happy Writing! We hope the Writing Planner Basic helps streamline your creative process.
+Happy Writing! We hope the Writing Planner Advanced helps streamline your creative process.
