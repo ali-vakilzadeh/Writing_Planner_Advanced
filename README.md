@@ -112,10 +112,12 @@ The task pane has two main tabs: "Plan" and "TOC".
 *   **Build Document:** Click this to insert basic headings into your Word document based on the sections currently defined in your plan. *Use with caution, especially in existing documents.*
 *   **Delete All Data:** Click this (often requires confirmation) to completely remove the planner data from the current document's properties.
 
-**Saving:**
+**Saving and Privacy:**
 
 Your plan is automatically saved within the document's properties whenever you make changes. Just save your Word document as usual!
 
+Privacy notice:
+Although the add-in doesn't store your data separately or no other location, your prompt(s) and AI inferences are executed on third party servers (www.openrouter.com), using convensional data transfer methods (HTTP/HTTPS). You should consider not sharing sensitive data with the AI server.
 ---
 
 Happy Writing! We hope the Writing Planner Advanced helps streamline your creative process.
