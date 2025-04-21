@@ -110,6 +110,15 @@ module.exports = async (env, options) => {
       },
       port: process.env.npm_package_config_dev_server_port || 3000,
     },
+    performance: {
+    hints: false, // disables all performance hints
+    },
+    ignoreWarnings: [
+    {
+      module: /@griffel\/react/, // regex for the module
+      message: /__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED/,
+    },
+  ],
   };
 
   return config;
