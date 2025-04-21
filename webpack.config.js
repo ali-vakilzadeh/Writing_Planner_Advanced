@@ -5,8 +5,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
-const urlDev = "https://localhost:3000/";
-// const urlProd = "https://www.sophia.app/"; //  PRODUCTION DEPLOYMENT LOCATION
+const urlDev = "https://localhost:4000/";
+const urlProd = "https://82.115.20.247:4000/"; //  PRODUCTION DEPLOYMENT LOCATION
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
