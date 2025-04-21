@@ -36,8 +36,8 @@ Get ready to supercharge your writing workflow! Follow these steps to install th
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/OfficeDev/Office-Addin-TaskPane-React-JS.git # Or your specific repo URL
-    cd office-addin-taskpane-react-js # Or your project directory
+    git clone https://github.com/ali-vakilzadeh/Writing_Planner_Advanced.git
+    cd Writing_Planner_Advanced
     ```
 
 2.  **Install Dependencies:**
@@ -72,7 +72,7 @@ Get ready to supercharge your writing workflow! Follow these steps to install th
     # OR
     # npm run start
     ```
-    This will likely open Word for you with the add-in loaded. If Word doesn't open automatically, open it manually.
+    This will open Word for you with the add-in loaded. If Word doesn't open automatically, open it manually.
 
 6.  **Find the Add-in:** The add-in task pane should appear automatically. If not, you can usually find sideloaded add-ins under the "Home" or "Insert" tab in Word (look for a button with the add-in's name or a generic "Office Add-ins" button).
 
