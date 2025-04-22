@@ -1454,7 +1454,6 @@ export default function App(props) {
             context.document.body.insertParagraph("", "End")
           }
 
-          // Inside the buildDocumentStructure function, after the for loop that inserts items:
           // Update status of empty items to created
           const updatedItems = planningItems.map((item) =>
             item.status === "empty" ? { ...item, status: "created" } : item,
