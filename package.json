@@ -9,8 +9,8 @@
   "config": {
     "app_to_debug": "word",
     "app_type_to_debug": "desktop",
-    "dev_server_port": 4000,
-    "server_port": 4000
+    "dev_server_port": 3000,
+    "server_port": 3000
   },
   "scripts": {
     "build": "webpack --mode production",
