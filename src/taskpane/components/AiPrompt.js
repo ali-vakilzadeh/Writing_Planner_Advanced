@@ -138,7 +138,7 @@ const generateNewPlan = async (prompt, apiKey) => {
         "X-Title": "Writing Planner Add-in",
       },
       body: JSON.stringify({
-        model: "openai/gpt-3.5-turbo",
+        model: "google/gemini-2.5-pro-exp-03-25:free",
         messages: [
           { role: "system", content: NEW_PLAN_SYSTEM_PROMPT },
           { role: "user", content: prompt },
