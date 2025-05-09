@@ -4,7 +4,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Sophia</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Word Planner Basic"/>
+  <DisplayName DefaultValue="Word Planner Advanced"/>
   <Description DefaultValue="Plan your work and focus on your magic."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
@@ -72,9 +72,9 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Writing planner basic: plan your work without disturbing whats inside your document."/>
+        <bt:String id="GetStarted.Title" DefaultValue="Writing planner Advanced: Plan and draft your work with AI."/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Planner Group"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Writing planner"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Writing planner"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Writing planner loaded successfully. Go to the HOME tab and click the 'Show Planner' button to get started."/>

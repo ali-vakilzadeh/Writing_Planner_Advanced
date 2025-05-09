@@ -1574,8 +1574,7 @@ export default function App(props) {
           <TooltipHost content="Generate Content">
             <IconButton
               iconProps={{ iconName: "LightningBolt" }}
-            onClick={() => handleGenerateSectionContent(item.id)}
-            disabled={generatingSectionId === item.id}
+            onClick={() => generateSectionContent(item.id)}
             styles={{ root: { height: 24, width: 24, marginRight: 8 } }}
           />
           </TooltipHost>

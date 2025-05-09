@@ -45,7 +45,7 @@ Focus on providing substantive, relevant information that fits the section's pur
 // Function to get the API key from localStorage
 export const getApiKey = (): string => {
   if (typeof window !== "undefined") {
-    return localStorage.getItem("openrouter_api_key") || ""
+    return localStorage.getItem("openRouterApiKey") || ""
   }
   return ""
 }
@@ -53,7 +53,7 @@ export const getApiKey = (): string => {
 // Function to save the API key to localStorage
 export const saveApiKey = (apiKey: string): void => {
   if (typeof window !== "undefined") {
-    localStorage.setItem("openrouter_api_key", apiKey)
+    localStorage.setItem("openRouterApiKey", apiKey)
   }
 }
 
@@ -112,7 +112,7 @@ export const callOpenRouter = async (
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://writingplanner.app", // Replace with your actual domain
+        "HTTP-Referer": "https://www.pmia.app", // Replace with your actual domain
         "X-Title": "Writer AI Add-in",
       },
       body: JSON.stringify({
