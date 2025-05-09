@@ -1571,7 +1571,15 @@ export default function App(props) {
             />
           </TooltipHost>
 
-          {/* Replace the delete button in renderPlanningItem with: */}
+          <TooltipHost content="Generate Content">
+            <IconButton
+              iconProps={{ iconName: "LightningBolt" }}
+            onClick={() => handleGenerateSectionContent(item.id)}
+            disabled={generatingSectionId === item.id}
+            styles={{ root: { height: 24, width: 24, marginRight: 8 } }}
+          />
+          </TooltipHost>
+          
           <TooltipHost content={"Long click to delete"}>
             <IconButton
               iconProps={{ iconName: "Delete" }}
