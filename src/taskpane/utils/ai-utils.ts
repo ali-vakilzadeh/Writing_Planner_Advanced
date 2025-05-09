@@ -1,13 +1,72 @@
 // AI utilities for plan generation and updates
 
-import { getApiKey, getModel, getPlannerSystemPrompt, getSectionSystemPrompt } from "./api-utils"
+// System prompt for generating a new plan
+const NEW_PLAN_SYSTEM_PROMPT = `
+You are an expert writing assistant that helps users plan their documents.
+The user will provide a description of what they want to write.
+Your task is to create a structured document outline with sections and subsections.
+
+IMPORTANT: Your response must be in valid JSON format with the following structure:
+{
+  "planItems": [
+    {
+      "title": "Section Title",
+      "level": 1,
+      "comments": "Detailed instructions for writing this section"
+    },
+    {
+      "title": "Subsection Title",
+      "level": 2,
+      "comments": "Detailed instructions for writing this subsection"
+    }
+    // more sections...
+  ]
+}
+
+Guidelines:
+1. Level 1 is for main sections, level 2 is for subsections
+2. Include 5-15 sections depending on the complexity of the topic
+3. For each section, provide detailed comments (50-100 words) explaining what should be included
+4. Follow standard academic or professional document structure when appropriate
+5. ONLY respond with the JSON, no other text
+`
+
+// System prompt for updating an existing plan
+const UPDATE_PLAN_SYSTEM_PROMPT = `
+You are an expert writing assistant that helps users update their document plans.
+The user will provide their current document plan and a description of how they want to update it.
+Your task is to modify the plan according to their request.
+
+IMPORTANT: Your response must be in valid JSON format with the same structure as the input:
+{
+  "planItems": [
+    {
+      "title": "Section Title",
+      "level": 1,
+      "comments": "Detailed instructions for writing this section"
+    },
+    // more sections...
+  ]
+}
+
+Guidelines:
+1. Preserve the existing structure where appropriate
+2. You can add, remove, or modify sections as needed
+3. Update the comments to reflect the user's new requirements
+4. ONLY respond with the JSON, no other text
+`
+
+// Function to get the API key from localStorage
+export const getApiKey = (): string => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("openrouter_api_key") || ""
+  }
+  return ""
+}
 
 // Function to generate a new plan
 export const generateNewPlan = async (prompt: string): Promise<any> => {
   const apiKey = getApiKey()
-  const model = getModel()
-  const systemPrompt = getPlannerSystemPrompt()
-
   if (!apiKey) {
     throw new Error("API key not set. Please configure your OpenRouter API key in settings.")
   }
@@ -18,13 +77,13 @@ export const generateNewPlan = async (prompt: string): Promise<any> => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://writingplanner.app",
-        "X-Title": "Writer AI Add-in",
+        "HTTP-Referer": "https://pmia.app",
+        "X-Title": "Writing Planner Add-in",
       },
       body: JSON.stringify({
-        model: model,
+        model: "meta-llama/llama-4-maverick:free",
         messages: [
-          { role: "system", content: systemPrompt },
+          { role: "system", content: NEW_PLAN_SYSTEM_PROMPT },
           { role: "user", content: prompt },
         ],
       }),
@@ -76,9 +135,6 @@ export const generateNewPlan = async (prompt: string): Promise<any> => {
 // Function to update an existing plan
 export const updateExistingPlan = async (currentPlan: any[], prompt: string): Promise<any> => {
   const apiKey = getApiKey()
-  const model = getModel()
-  const systemPrompt = getPlannerSystemPrompt()
-
   if (!apiKey) {
     throw new Error("API key not set. Please configure your OpenRouter API key in settings.")
   }
@@ -96,13 +152,13 @@ export const updateExistingPlan = async (currentPlan: any[], prompt: string): Pr
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://writingplanner.app",
-        "X-Title": "Writer AI Add-in",
+        "HTTP-Referer": "https://pmia.app",
+        "X-Title": "Writing Planner Add-in",
       },
       body: JSON.stringify({
-        model: model,
+        model: "openai/gpt-3.5-turbo",
         messages: [
-          { role: "system", content: systemPrompt },
+          { role: "system", content: UPDATE_PLAN_SYSTEM_PROMPT },
           {
             role: "user",
             content: `Here is my current plan:\n${JSON.stringify({ planItems: simplifiedPlan }, null, 2)}\n\nI want to update it as follows: ${prompt}`,
@@ -200,58 +256,4 @@ const extractSectionsFromText = (text: string): any[] => {
   }
 
   return sections
-}
-
-// Function to generate content for a specific section
-export const generateSectionContent = async (
-  sectionTitle: string,
-  sectionComments: string,
-  documentTitle = "Document",
-): Promise<string> => {
-  const apiKey = getApiKey()
-  const model = getModel()
-  const baseSystemPrompt = getSectionSystemPrompt()
-
-  if (!apiKey) {
-    throw new Error("API key not set. Please configure your OpenRouter API key in settings.")
-  }
-
-  try {
-    // Create system prompt that focuses on the specific section
-    const systemPrompt = `${baseSystemPrompt}\nThe document is titled "${documentTitle}" and the section is "${sectionTitle}".`
-
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://writingplanner.app",
-        "X-Title": "Writer AI Add-in",
-      },
-      body: JSON.stringify({
-        model: model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: sectionComments },
-        ],
-      }),
-    })
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(`API Error: ${errorData.error?.message || response.statusText}`)
-    }
-
-    const data = await response.json()
-    const content = data.choices[0]?.message?.content
-
-    if (!content) {
-      throw new Error("No content returned from API")
-    }
-
-    return content
-  } catch (error) {
-    console.error("Error generating section content:", error)
-    throw error
-  }
 }

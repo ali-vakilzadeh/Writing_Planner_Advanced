@@ -1,5 +1,5 @@
 "use client"
-import * as React from "react"
+
 import { useState } from "react"
 import {
   Stack,
@@ -16,7 +16,7 @@ import {
   MessageBar,
   MessageBarType,
 } from "@fluentui/react"
-import { getApiKey } from "../utils/api-utils.ts"
+import { getApiKey } from "../utils/api-utils"
 
 // System prompt for generating a new plan
 const NEW_PLAN_SYSTEM_PROMPT = `
@@ -134,11 +134,11 @@ const generateNewPlan = async (prompt, apiKey) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://writingplanner.app",
+        "HTTP-Referer": "https://pmia.app",
         "X-Title": "Writing Planner Add-in",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-pro-exp-03-25:free",
+        model: "meta-llama/llama-4-maverick:free",
         messages: [
           { role: "system", content: NEW_PLAN_SYSTEM_PROMPT },
           { role: "user", content: prompt },
@@ -208,11 +208,11 @@ const updateExistingPlan = async (currentPlan, prompt, apiKey) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://writingplanner.app",
+        "HTTP-Referer": "https://pmia.app",
         "X-Title": "Writing Planner Add-in",
       },
       body: JSON.stringify({
-        model: "openai/gpt-3.5-turbo",
+        model: "meta-llama/llama-4-maverick:free",
         messages: [
           { role: "system", content: UPDATE_PLAN_SYSTEM_PROMPT },
           {

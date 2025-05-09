@@ -180,6 +180,7 @@ export default function App(props) {
   const [templateJustApplied, setTemplateJustApplied] = useState(false)
   const [settingsDialogOpen, setSettingsDialogOpen] = useState(false)
 
+
   // make sure the planningItems are saved to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("planningItems", JSON.stringify(planningItems))
@@ -747,7 +748,7 @@ export default function App(props) {
       }
 
       // Prepare system prompt
-      const systemPrompt = `You are an expert writing assistant. You are helping the user write content for a document section titled "${section.title}". The overall document is about writing planning. Please generate well-written, informative content based on the user's instructions.`
+      const systemPrompt = `You are an expert writing assistant. You are helping the user write content for a document section titled "${section.title}". Please generate well-written, informative and completely credible content based on the user's instructions.`
 
       // Make API call
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -755,11 +756,11 @@ export default function App(props) {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://writingplanner.app",
+          "HTTP-Referer": "https://pmia.app",
           "X-Title": "Writing Planner Add-in",
         },
         body: JSON.stringify({
-          model: "openai/gpt-3.5-turbo",
+          model: "meta-llama/llama-4-maverick:free",
           messages: [
             { role: "system", content: systemPrompt },
             { role: "user", content: section.comments },
